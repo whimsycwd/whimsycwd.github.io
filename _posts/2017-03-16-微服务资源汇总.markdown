@@ -1,0 +1,96 @@
+---
+layout: post
+title:  "微服务资源汇总"
+date:   2017-03-16 12:00:00 +0800
+categories: microservice
+---
+
+
+## Post
+* [微服务的先驱 @Werner Vogels](https://queue.acm.org/detail.cfm?id=1142065)
+	-  划分服务， 解耦团队协作， 释放生产力。 
+	-  一个团队的大小应该"小于两个披萨(美国)"
+	-  服务化促使了， Amazon 的技术演进， [talk](https://vimeo.com/29719577), 模块的碎片化， 使得公司内， 每个团队都有人在做运维的工具。 如此， 促进了AWS 的发展。 
+* [微服务的性质 @MartinFowler](https://martinfowler.com/articles/microservices.html)
+	- [talk](https://www.youtube.com/watch?v=Irlw-LGIJO4)  过了一遍要点
+	- [Conway's Law](https://www.thoughtworks.com/insights/blog/demystifying-conways-law) 软件系统结构反应人员组织结构
+* [微服务Trade-Off-运维压力 @MartinFowler](https://martinfowler.com/articles/microservice-trade-offs.html#ops)
+	- 微服务引入运维压力， 处理大量的碎片模块， 需要持续集成
+* [DevOps 文化 @ThoughtWorks](https://martinfowler.com/bliki/DevOpsCulture.html)
+	- 微服务运动， 带来了开发压力。 但是引入了分布式等复杂度。 需要开发运维共同合作来更好减少微服务带来的运维压力。 
+	- 开发需要写出容易运维的压力? 
+	- 耦合? 
+* [微服务的代价](http://martinfowler.com/bliki/MicroservicePremium.html)
+	- 微服务有风险, 使用需谨慎
+* [Spotify 的组织架构](https://ucvox.files.wordpress.com/2012/11/113617905-scaling-agile-spotify-11.pdf)
+	- 微服务 + 人的划分。 可以减少协作障碍， 提高生产力
+
+*  [实施微服务需要哪些基础框架](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=400645575&idx=1&sn=da55d75db55117046c520de88dde1123&3rd=MzA3MDU4NTYzMw==&scene=6#rd)
+	- 很好的总结
+	- 服务发现
+		- 集中式LoadBalancing(容易做集中式的访问控制， 业界主流)
+		- 进程内 LB, 客户端负载均衡
+		- 主机独立LB 进程，  简化了服务调用方， 
+			* 不需要为不同语言开发客户库  
+			* LB 的升级不朽要服务方该代码
+			* Airbnb SmartStack,  @Attention
+				-  [服务发现](https://github.com/airbnb/synapse)
+				-  [服务注册](https://github.com/airbnb/nerve)
+			*  Kubernetes, kube-proxy 
+			* [Linkerd](https://linkerd.io/) 分布式网关 - 服务网络 @Attention
+				-   [repo](https://github.com/linkerd/linkerd)
+				-   THIS IS FUTURE!
+
+### 微服务框架|组件
+框架和组件关注的一些与业务逻辑无关的， 公共关注点。 
+-  鉴权
+-  序列化协议(xxx-rpc)
+-  流控量控
+-  日志跟踪
+-  配置管理(Disconf)
+-  容错处理(Hytrix)
+-  服务发现(Zuul, [百度服务治理规范](http://wiki.baidu.com/pages/viewpage.action?pageId=187523062))
+-  文档生成工具(Swagger)
+
+### 内部项目
+*	[MSOA](http://wiki.baidu.com/pages/viewpage.action?pageId=112526525)
+	- @duyaming
+	- [金融网关](http://wiki.baidu.com/pages/viewpage.action?pageId=112526525#id-微服务架构探索与实施-4.3APIGateway)
+*   [Stargate](http://wiki.baidu.com/pages/viewpage.action?pageId=181814868)
+	- 2012 @liutao04
+*   [Navi-rpc](http://wiki.baidu.com/pages/viewpage.action?pageId=36869734)
+	- @zhangxu
+	- [repo](https://github.com/neoremind/navi)
+	- [navi-pbrpc-repo](https://github.com/neoremind/navi-pbrpc) 
+*	[新天路](http://wiki.baidu.com/pages/viewpage.action?pageId=210557880)
+	- MIEE @zhangzhenhui 
+	- [百度服务治理规范](http://wiki.baidu.com/pages/viewpage.action?pageId=187523062)
+
+*   [运行时配置管理 Disconf](https://github.com/knightliao/disconf)
+	- 有些参数配置在运行期可能还要动态调整，例如，运行时根据流量状况动态调整限流和熔断阀值。
+
+### 项目 
+* go-micro
+	- [blog](https://micro.mu/blog/) 有干货
+	- 模块设计很清晰
+	- [go-micro](https://github.com/micro/go-micro) 微服务组件
+	- [服务周边辅助](https://github.com/micro)
+* [gprc](http://www.grpc.io/)
+	- By Google
+* [dubbo](https://github.com/alibaba/dubbo/wiki)
+	- By Alibaba, 中文文档， 文档齐全
+* [Netflix微服务框架]
+	- Eureka:　服务注册发现框架
+	- Zuul:　服务网关
+	- Karyon:　服务端框架
+	- Ribbon:　客户端框架
+	- Hystrix:	服务容错组件 **notice** 
+	- Archaius: 服务配置组件
+	- Servo: Metrics组件
+	- Blitz4j: 日志组件
+
+## 资源集合
+* [Microservices](https://www.microservices.com/)
+	- 	每周会发和微服务有关的Microservice Brief
+* [Martinfowler](https://martinfowler.com/microservices/)
+
